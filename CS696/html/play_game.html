@@ -21,9 +21,121 @@
 			</nav>
 		</header>
 
-		<canvas id="canvas" width="960" height="768" style="border:1px solid #000000;">
+		<canvas id="myCanvas" width="960" height="768" style="border:1px solid #000000;">
 			Your browser does not support the HTML5 canvas tag.
 		</canvas>
+
+		<script>
+		var xpos = 0, ypos = 0, cxpos = 384, cypos = 320, framesize = 64, direction = "right";
+
+			function loop(){
+        		var drawingCanvas = document.getElementById('myCanvas');
+        		if(drawingCanvas.getContext){
+        			var context = drawingCanvas.getContext('2d');
+        			context.clearRect(0,0,drawingCanvas.width, drawingCanvas.height);
+        			myImage = new Image();
+
+        			myImage.onload = function(){
+
+        				context.drawImage(myImage, xpos,ypos,framesize,framesize,cxpos,cypos,framesize,framesize);
+        			}
+        			myImage.src = "../img/spritesheet.png";
+					
+        		}
+        		
+        		if(direction == "left"){
+        			cxpos -= 64;
+
+					if(xpos == 64 && ypos == 64){
+        				xpos = 128;
+        			}
+        			else{
+        				xpos = 64;
+        			}
+
+        		}
+        		else if(direction == "right"){
+        			cxpos += 64;
+
+        			if(xpos == 0 && ypos == 0){
+        				xpos = 128;
+        			}
+        			else{
+        				xpos = 0;
+        			}
+        		}
+        		else if(direction == "up"){
+        			cypos -= 64;
+
+        			if(xpos == 0 && ypos == 192){
+        				xpos = 128;
+        			}
+        			else{
+        				xpos = 0;
+        			}
+        		}
+        		else{
+        			cypos += 64;
+
+        			if(xpos == 0 && ypos == 128){
+        				xpos = 128;
+        			}
+        			else{
+        				xpos = 0;
+        			}
+        		}
+
+        		document.onkeydown = function(evt){
+
+        			evt = evt || window.event;
+        			switch(evt.keyCode){
+        				case 37:
+        				    
+        				    if(direction != "left"){
+        				    	xpos = 64;
+        				    	ypos = 64;
+        				    }
+        					direction = "left";
+        					break;
+
+        				case 38:
+
+        					if(direction != "up"){
+        				    	xpos = 0;
+        				    	ypos = 192;
+        				    }
+        				
+        					direction = "up";
+
+        					break;
+
+
+        				case 39:
+
+        					if(direction != "right"){
+        				    	xpos = 0;
+        				    	ypos = 0;
+        				    }
+        				
+        					direction = "right";
+        					break;
+
+        				case 40:
+
+        					if(direction != "down"){
+        				    	xpos = 0;
+        				    	ypos = 128;
+        				    }
+        				
+        					direction = "down";
+        					break;
+        			}
+        		}
+        	}
+
+        	setInterval(loop,1000);
+        	
+    	</script>
 
 		<footer>
 			<p>
