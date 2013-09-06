@@ -26,7 +26,7 @@ nav{padding-top: 0; padding-right: 5px;}
 .button{background: #242324; padding: 6px; text-transform: uppercase; color: white; font-size: 11px;}
 .button:hover{color: white; background: black;}
 
-p{font-size: 13px; line-height: 20px; color: #353535;}
+p{font-size: 12px; line-height: 20px; color: #353535;}
 
 h1, h2{letter-spacing: -1px;}
 h3{line-height:1em;font-size: 26px; text-transform: lowercase; border-bottom: 1px solid #d1d1d1; padding-bottom: 15px; margin-bottom: 15px;}
